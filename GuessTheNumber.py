@@ -1,11 +1,11 @@
 import random
 
+while True:
 
-play = True
-
-while play:
-
-    level = (input("Pick a level 1(easy), 2(medium), 3(hard): "))
+    def level_difficulty():
+        level = input("Pick a level; easy, medium, hard: ")
+        return level
+    level = level_difficulty()
 
     # Level of difficulty arrangement
     if level == "easy":
@@ -27,21 +27,32 @@ while play:
         print ("You have choosen hard. You have 3 guesses.") 
         print("Try to guess the number! Its between 1 and 50.")
 
-    number = random.randint(1, 100)
+    if level == "easy":
+        number = random.randint(1, 10)
 
-    guessesTaken = 0
-    while guessesTaken <= total_guess:
-        try:
-            guess = int(input("Take a guess:"))
-        except:
-            print("You can only enter a number \n Guess the number")    
-        guessesTaken += 1
-        if guess < number:
-            print("Your guess is too low")     
-        if guess > number:
-            print("Your guess is too high.")
-        if guess == number:
-            break
+    if level == "medium":
+        number = random.randint(1, 20)
+
+    if level == "hard":
+        number = random.randint(1, 50)    
+    
+
+    def guesses():
+        while True: 
+            try:
+                guess = int(input("Take a guess:"))
+            except:
+                print("You can only enter a number \n Guess the number")  
+            return guess    
+    guess = guesses()
+
+    def number_guesses():
+        guessesTaken = 0
+        while guessesTaken < total_guess:  
+            guessesTaken += 1
+        return guessesTaken
+    guessesTaken = str(number_guesses())
+    print("You have " + guessesTaken + " guesses left." )     
 
     # End statements depending on whether user guessed correct number or not.    
     if guess == number:
@@ -60,7 +71,7 @@ while play:
 
 
     print(guess)
+
+
+
         
-
-
-    
