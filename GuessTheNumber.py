@@ -1,71 +1,48 @@
 import random
 
-while True:
+print('Guess The Number \n')
 
-    def level_difficulty():
-        level = input("Pick a level; easy, medium, hard: ")
-        return level
-    level = level_difficulty()
+def guess_algorithm(max_number, no_of_trials):
+  guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
+  trials = no_of_trials
+  
+  while True:
+    random_number = random.randint(1, max_number)
+    print('You have ' + str(trials) + ' guesses left \n')
 
-    # Level of difficulty arrangement
-    if level == "easy":
+    if trials == 0:
+      print('Game Over')
+      break
+    elif guess is not random_number:
+      trials = trials - 1
+      print("You guessed the number " + str(guess) + '\n' "The number was " + str(random_number) + '\n')
+      guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
+    else:
+      print("You guessed the correct number " + str(guess) + " The number was " + str(random_number))
+      break
 
-        top = 10
-        total_guess = 6
-        print ("You have choosen easy. You have 6 guesses")
-        print("Try to guess the number! Its between 1 and 10.")
 
-    elif level == "medium":
-        max_number = 20
-        total_guess = 4
-        print ("You have choosen medium. You have 4 guesses.")    
-        print("Try to guess the number! Its between 1 and 20.")
+def main():
+  level = input("Pick a level; easy, medium, hard: ")
 
-    elif level == "hard": 
-        max_number = 50
-        total_guess = 3
-        print ("You have choosen hard. You have 3 guesses.") 
-        print("Try to guess the number! Its between 1 and 50.")
+  if level == "easy":
+    trials = 6
+    max_number = 10
+    print("You have chosen easy. You have 6 guesses")
+    guess_algorithm(max_number, trials)
+  elif level == "medium":
+    trials = 4
+    max_number = 20
+    print("You have chosen easy. You have 4 guesses")
+    guess_algorithm(max_number, trials)
 
-    if level == "easy":
-        number = random.randint(1, 10)
+  elif level == "hard":
+    trials = 3
+    max_number = 50
+    print("You have chosen easy. You have 3 guesses")
+    guess_algorithm(max_number, trials)
 
-    if level == "medium":
-        number = random.randint(1, 20)
 
-    if level == "hard":
-        number = random.randint(1, 50)    
-    
+if __name__ == "__main__":
+  main()
 
-    def guesses():
-        while True: 
-            try:
-                guess = int(input("Take a guess:"))
-            except:
-                print("You can only enter a number \n Guess the number")  
-            return guess    
-    guess = guesses()
-
-    def number_guesses():
-        guessesTaken = 0
-        while guessesTaken < total_guess:  
-            guessesTaken += 1
-        return guessesTaken
-    guessesTaken = str(number_guesses())
-    print("You have " + guessesTaken + " guesses left." )     
-
-    # End statements depending on whether user guessed correct number or not.    
-    if guess == number:
-        guessesTaken = str(guessesTaken)
-        print("You guessed the number in " + guessesTaken + " guesses!")
-
-    if guess != number:
-        number = str(number)
-        print("Nope. The number was " + number)
-
-    # Play again loop that attaches to original statement that allows you to quit or play again.
-    count=1
-    again=(input("Do you want to play again, type yes or no "))
-    if again == "no":
-        play = False   
-        
