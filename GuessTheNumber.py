@@ -68,10 +68,4 @@ while True:
     again=(input("Do you want to play again, type yes or no "))
     if again == "no":
         play = False   
-
-
-    print(guess)
-
-
-
         
