@@ -2,6 +2,7 @@ import random
 
 print('Guess The Number \n')
 
+
 def guess_algorithm(max_number, no_of_trials):
   trials = no_of_trials
   try:
@@ -9,11 +10,10 @@ def guess_algorithm(max_number, no_of_trials):
   except ValueError:
     print('You can only guess a number')
 
-
+  random_number = random.randint(1, max_number)
   
   while True:
-    random_number = random.randint(1, max_number)
-    print('You have ' + str(trials) + ' guesses left \n')
+    print('You have ' + str(trials - 1) + ' guesses left \n')
 
     if trials == 0:
       print('Game Over')
