@@ -3,8 +3,13 @@ import random
 print('Guess The Number \n')
 
 def guess_algorithm(max_number, no_of_trials):
-  guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
   trials = no_of_trials
+  try:
+    guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
+  except ValueError:
+    print('You can only guess a number')
+
+
   
   while True:
     random_number = random.randint(1, max_number)
@@ -16,7 +21,10 @@ def guess_algorithm(max_number, no_of_trials):
     elif guess is not random_number:
       trials = trials - 1
       print("You guessed the number " + str(guess) + '\n' "The number was " + str(random_number) + '\n')
-      guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
+      try:
+        guess = int(input('Try to guess the number between 1 - ' + str(max_number) + ': \n'))
+      except ValueError:
+        print('You can only guess a number')
     else:
       print("You guessed the correct number " + str(guess) + " The number was " + str(random_number))
       break
